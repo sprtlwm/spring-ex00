@@ -1,4 +1,4 @@
-package org.zerock.controller.p03controller.cont06;
+package org.zerock.controller.p03controller;
 
 import java.util.Map;
 
