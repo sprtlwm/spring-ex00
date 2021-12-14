@@ -22,18 +22,22 @@
 			<div class="col">
 				<h1>회원정보</h1>
 				<form method="post" id="infoForm">
-					<div class="form-gorup">
+					<div class="form-group">
 						<label for="input1">아이디</label> <input type="text" required id="input1" class="form-control" name="id" value="${sessionScope.loggedInMember.id }" readonly>
 					</div>
-					<div class="form-gorup">
+					<div class="form-group">
 						<label for="input2">패스워드</label> <input type="text" required id="input2" class="form-control" name="password" value="${sessionScope.loggedInMember.password }">
 					</div>
-					<div class="form-gorup">
-						<label for="input3">이메일</label> <input type="text" required id="input3" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+					<div class="form-group">
+						<label for="input5">닉네임</label> <input type="text" required id="input5" class="form-control" name="nickName" value="${sessionScope.loggedInMember.nickName }">
 					</div>
-					<div class="form-gorup">
+					<div class="form-group">
+						<label for="input3">이메일</label> <input type="email" required id="input3" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+					</div>
+					<div class="form-group">
 						<label for="input4">주소</label> <input type="text" required id="input4" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
 					</div>
+					<!-- button.btn.btn-outline-secondary{수정}+button.btn.btn-outline-danger{삭제} -->
 					<button class="btn btn-outline-secondary" id="modifyButton">수정</button>
 					<button class="btn btn-outline-danger" id="removeButton">삭제</button>
 				</form>

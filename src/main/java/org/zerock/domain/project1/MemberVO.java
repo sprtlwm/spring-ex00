@@ -8,8 +8,10 @@ import lombok.Data;
 public class MemberVO {
 	
 	private String id;
+	private String nickName;
 	private String password;
 	private String email;
 	private String address;
 	private LocalDateTime inserted;
+	private Integer numberOfBoard;
 }
