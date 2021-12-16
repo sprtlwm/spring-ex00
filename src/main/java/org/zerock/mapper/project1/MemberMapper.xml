@@ -31,20 +31,42 @@
 	</delete>
 	
 	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
-		SELECT 
-	    m.id,
-	    m.password,
-	    m.email,
-	    m.address,
-	    m.inserted,
-	    m.nickName,
-	    COUNT(b.id) numberOfBoard
-	FROM
-	    Member m
-	        LEFT JOIN
-	    Board b ON m.id = b.writer
-	GROUP BY m.id
-	ORDER BY m.inserted DESC;
-		</select>
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+	</select>
+	
+	<select id="listPage" resultType="org.zerock.domain.project1.MemberVO">
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+LIMIT #{from}, #{items}
+	</select>
+	
+	<select id="getCountRows" resultType="int">
+	SELECT COUNT(*) FROM Member
+	</select>
 
 </mapper>

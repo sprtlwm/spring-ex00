@@ -28,7 +28,6 @@ public class BoardController {
 	@GetMapping("/list")
 	public void list(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) {
 
-		System.out.println(page);
 		Integer numberPerPage = 10; // 한 페이지의 row 수
 
 		// 3. business logic

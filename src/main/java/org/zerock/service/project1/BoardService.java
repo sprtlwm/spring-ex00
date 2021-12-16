@@ -19,22 +19,23 @@ public class BoardService {
 	public boolean register(BoardVO board) {
 		return mapper.insert(board) == 1;
 	}
-	
+
 	public BoardVO get(Integer id) {
-		return mapper.read(id);	
+		return mapper.read(id);
 	}
-	
+
 	public boolean modify(BoardVO board) {
 		return mapper.update(board) == 1;
 	}
-	
+
 	public boolean remove(Integer id) {
 		return mapper.delete(id) == 1;
 	}
-	
-	public List<BoardVO> getList(){
+
+	public List<BoardVO> getList() {
 		return mapper.getList();
 	}
+
 	public List<BoardVO> getListPage(Integer page, Integer numberPerPage) {
 
 		// sql에서 사용할 record 시작 번호 (0-index)
@@ -56,8 +57,13 @@ public class BoardService {
 		// 페이지네이션 가장 오른쪽 번호
 		Integer rightPageNumber = (page - 1) / 10 * 10 + 10;
 		// 가장 마지막 페이지를 넘어가지 않도록
-		rightPageNumber = rightPageNumber > lastPage ? lastPage : rightPageNumber; 
-		
+		rightPageNumber = rightPageNumber > lastPage ? lastPage : rightPageNumber;
+
+		// 이전 페이지 버튼 존재 유무
+		Boolean hasPrevButton = leftPageNumber != 1;
+
+		// 다음 페이지 버튼 존재 유무
+		Boolean hasNextButton = rightPageNumber != lastPage;
 
 		PageInfoVO pageInfo = new PageInfoVO();
 
@@ -69,10 +75,5 @@ public class BoardService {
 
 		return pageInfo;
 	}
-	
+
 }
-
-
-
-
-
