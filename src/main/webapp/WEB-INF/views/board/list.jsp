@@ -19,7 +19,7 @@
  <b:navBar></b:navBar>
 
   <!-- .container>.row>.col>h1{게시물 목록} -->
-  <div class="container">
+   <div class="container">
     <div class="row">
       <div class="col">
         <h1>게시물 목록</h1>
@@ -31,7 +31,9 @@
                 <i class="fab fa-slack-hash"></i>
               </th>
               <th>제목</th>
-              <th><i class="fas fa-user"></i></th>
+              <th>
+                <i class="fas fa-user"></i>
+              </th>
               <th>작성일</th>
             </tr>
           </thead>
@@ -40,10 +42,14 @@
               <tr>
                 <td>${board.id }</td>
                 <td>
-                  <a href="get?id=${board.id }"><c:out value="${board.title }"/></a>
+                  <a href="get?id=${board.id }">
+                    <c:out value="${board.title }" />
+                  </a>
                 </td>
-                <td><c:out value="${board.nickName }"/></td>
-               <td>${board.customInserted }</td>
+                <td>
+                  <c:out value="${board.nickName }" />
+                </td>
+                <td>${board.customInserted }</td>
               </tr>
             </c:forEach>
           </tbody>
@@ -51,8 +57,34 @@
       </div>
     </div>
   </div>
+  <!--  pagination -->
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      
+      <c:forEach begin="${pageInfo.leftPageNumber}" end="${pageInfo.rightPageNumber }" var="pageNumber">
+        <c:url value="/board/list" var="pageLink">
+          <c:param name="page" value="${pageNumber }"></c:param>
+        </c:url>
+        <li class="page-item ${pageInfo.currentPage == pageNumber ? 'active' : '' }">
+          <a class="page-link" href="${pageLink }">${pageNumber }</a>
+        </li>
+      </c:forEach>
 
- <c:if test="${not empty result }">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!--  modal -->
+  <c:if test="${not empty result }">
     <div class="modal" tabindex="-1" id="modal1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -73,17 +105,17 @@
     </div>
   </c:if>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-<script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  <script>
       $(document).ready(function() {
-    	  if(history.state == null){
-        $("#modal1").modal('show');
-		history.replaceState({}, null);    		  
-    	  }
-      });
-    </script>	
 
+        if (history.state == null) {
+          $("#modal1").modal('show');
+          history.replaceState({}, null);
+        }
+      });
+    </script>
 </body>
 </html>
 
