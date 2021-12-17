@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.project1.MemberVO;
 import org.zerock.domain.project1.PageInfoVO;
@@ -26,7 +27,33 @@ public class MemberController {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
-
+	
+	@RequestMapping("/idcheck")
+	@ResponseBody
+	public String idcheck(String id) {
+		
+		boolean has = service.hasId(id);
+		
+		if(has) {
+			return "unable";			
+		}else {			
+			return "able";
+		}
+	}
+	
+	@RequestMapping("/niccheck")
+	@ResponseBody
+	public String inccheck(String nickName) {
+		
+		boolean has = service.hasNic(nickName);
+		
+		if(has) {
+			return "unable";			
+		}else {			
+			return "able";
+		}
+	}
+	
 	@GetMapping("/signup")
 	public void signup() {
 
