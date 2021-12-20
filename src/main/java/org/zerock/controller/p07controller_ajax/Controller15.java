@@ -1,4 +1,4 @@
-package org.zerock.controller.p07controller;
+package org.zerock.controller.p07controller_ajax;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
