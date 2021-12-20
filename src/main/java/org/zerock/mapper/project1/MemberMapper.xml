@@ -9,6 +9,12 @@
 	VALUES (#{id}, #{password}, #{email}, #{address}, #{nickName})
 	</insert>
 	
+	<select id="selectByNickName" resultType="org.zerock.domain.project1.MemberVO">
+	SELECT id, password, email, address, inserted, nickName
+	FROM Member
+	WHERE nickName = #{nickName}
+	</select>
+	
 	<select id="select" resultType="org.zerock.domain.project1.MemberVO">
 	SELECT id, password, email, address, inserted, nickName
 	FROM Member

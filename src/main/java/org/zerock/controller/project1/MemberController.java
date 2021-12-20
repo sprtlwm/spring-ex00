@@ -41,15 +41,14 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/niccheck")
+	@RequestMapping("/nickNameCheck")
 	@ResponseBody
-	public String inccheck(String nickName) {
+	public String nickNameCheck(String nickName) {
+		boolean has = service.hasNickName(nickName);
 		
-		boolean has = service.hasNic(nickName);
-		
-		if(has) {
-			return "unable";			
-		}else {			
+		if (has) {
+			return "unable";
+		} else {
 			return "able";
 		}
 	}
