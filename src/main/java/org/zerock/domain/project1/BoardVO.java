@@ -4,9 +4,6 @@ package org.zerock.domain.project1;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-
 import lombok.Data;
 
 @Data
@@ -20,6 +17,8 @@ public class BoardVO {
 //	@JsonFormat(shape = Shape.STRING)
 	private LocalDateTime updated;
 	private String nickName;
+	
+	private Integer replyCount;
 
 	public String getCustomInserted() {
 		//현재 일시
