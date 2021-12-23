@@ -1,6 +1,5 @@
 package org.zerock.controller.project1;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,19 +27,6 @@ public class MemberController {
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
 	
-	@RequestMapping("/idcheck")
-	@ResponseBody
-	public String idcheck(String id) {
-		
-		boolean has = service.hasId(id);
-		
-		if(has) {
-			return "unable";			
-		}else {			
-			return "able";
-		}
-	}
-	
 	@RequestMapping("/nickNameCheck")
 	@ResponseBody
 	public String nickNameCheck(String nickName) {
@@ -53,11 +39,25 @@ public class MemberController {
 		}
 	}
 	
+	
+	@RequestMapping("/idcheck") 
+	@ResponseBody
+	public String idcheck(String id) {
+		
+		boolean has = service.hasId(id);
+		
+		if (has) {
+			return "unable";
+		} else {
+			return "able";
+		}
+	}
+	
+
 	@GetMapping("/signup")
 	public void signup() {
 
 	}
-
 
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute("member") MemberVO member, RedirectAttributes rttr, Model model) {
@@ -184,7 +184,6 @@ public class MemberController {
 	
 	@GetMapping("/list")
 	public String list(@RequestParam(defaultValue = "1")Integer page, Model model) {
-		
 		Integer numberPerPage = 10;
 		
 		/* filter로 처리함
@@ -205,7 +204,6 @@ public class MemberController {
 		
 		return null;
 	}
-	
 }
 
 

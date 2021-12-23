@@ -11,32 +11,31 @@ import lombok.Setter;
 
 @Service
 public class ReplyService {
-	
-	@Setter(onMethod_ = @Autowired)
-	private ReplyMapper mapper;
-	
-	public List<ReplyVO> list(Integer boardId) {
 		
-		return mapper.list(boardId);
-	}
-
-	public boolean insert(ReplyVO reply) {
-
-		return mapper.insert(reply) == 1;
-	}
-
-	public ReplyVO readById(Integer id) {
+		@Setter(onMethod_ = @Autowired)
+		private ReplyMapper mapper;
 		
-		return mapper.selectById(id);
-	}
-	
-	public boolean update(ReplyVO newReply) {
+		public List<ReplyVO> list(Integer boardId) {
+			
+			return mapper.list(boardId);
+		}
 
-		return mapper.update(newReply) == 1;
-	}
+		public boolean insert(ReplyVO reply) {
 
-	public boolean delete(Integer id) {
-		return mapper.delete(id) == 1;
-	}
+			return mapper.insert(reply) == 1;
+		}
+
+		public ReplyVO readById(Integer id) {
+			return mapper.selectById(id);
+		}
+
+		public boolean update(ReplyVO newReply) {
+
+			return mapper.update(newReply) == 1;
+		}
+
+		public boolean delete(Integer id) {
+			return mapper.delete(id) == 1;
+		}
 	
 }

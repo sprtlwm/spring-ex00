@@ -18,13 +18,16 @@ public class MemberService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
-	
+
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper replyMapper;
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper boardMapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private BoardService boardService;
+
 	public MemberVO read(String id) {
 		return mapper.select(id);
 	}
@@ -49,7 +52,17 @@ public class MemberService {
 		// 1. 멤버가 작성한 댓글 지우기
 		replyMapper.deleteByMemberId(id);
 		// 2. 멤버가 작성한 게시물 지우기
-		boardMapper.deleteByMemberId(id);
+		// 2.1 멤버가 작성한 게시물 목록 얻고
+		Integer[] boardIds = boardMapper.selectByMemberId(id);
+		
+		// 2.2 게시물 삭제
+		if (boardIds != null) {
+			for (Integer boardId : boardIds) {
+				boardService.remove(boardId);
+			}
+		}
+		
+		
 		// 3. 멤버 지우기
 		return mapper.delete(id) == 1;
 	}
@@ -94,13 +107,11 @@ public class MemberService {
 		MemberVO member = mapper.select(id);
 
 		return member != null;
-
 	}
 
 	public boolean hasNickName(String nickName) {
-		
 		MemberVO member = mapper.selectByNickName(nickName);
-		
+
 		return member != null;
 	}
 }

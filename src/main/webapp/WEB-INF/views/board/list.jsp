@@ -38,13 +38,17 @@
             </tr>
           </thead>
           <tbody>
-                       <c:forEach items="${list }" var="board">
+          
+           <c:forEach items="${list }" var="board">
               <tr>
                 <td>${board.id }</td>
                 <td>
                   <a href="get?id=${board.id }">
                     <c:out value="${board.title }" />
                   </a>
+                  <c:if test="${board.hasFile }">
+                    <i class="far fa-images"></i>
+                  </c:if>
                   <c:if test="${board.replyCount > 0 }">
                     <i class="far fa-comments"></i> ${board.replyCount }
                   </c:if>

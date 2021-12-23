@@ -4,15 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.zerock.mapper.project1.ReplyMapper">
-	
+	<delete id="deleteByMemberId">
+	DELETE FROM Reply WHERE memberId = #{memberId}
+	</delete>
+
 	<delete id="deleteByBoardId">
 	DELETE FROM Reply WHERE boardId = #{boardId}
 	</delete>
-	
+
 	<delete id="delete">
 	DELETE FROM Reply WHERE id = #{id}
 	</delete>
-	
+
 	<update id="update">
 	UPDATE Reply
 	SET
@@ -28,7 +31,7 @@
 	FROM Reply
 	WHERE id = #{id}
 	</select>
-	
+
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 	INSERT INTO Reply (boardId, memberId, reply)
 	VALUES (#{boardId}, #{memberId}, #{reply})
